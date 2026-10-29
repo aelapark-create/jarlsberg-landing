@@ -4,10 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>얄스버그 · 연습용 랜딩페이지</title>
+<title>얄스버그 슬라이스 · 쿠팡 바로가기</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <!-- 구글 애널리틱스: G-XXXXXXXXXX 를 측정 ID로 바꾸면 집계 시작 -->
 <script>
+  // 짧은 링크(?l=채널코드-계정&c=캠페인)를 utm 꼬리표로 풀어서 주소를 바꾼 뒤 집계
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var l = q.get("l");
+    if (!l || q.get("utm_source")) return;
+    var codes = {
+      ig: ["instagram", "paid_social"], st: ["instagram", "story"], bio: ["instagram", "bio"],
+      inf: ["instagram", "influencer"], fb: ["facebook", "paid_social"], nv: ["naver", "blog"],
+      kk: ["kakao", "message"], yt: ["youtube", "video"], tt: ["tiktok", "video"]
+    };
+    var i = l.indexOf("-");
+    var code = i < 0 ? l : l.slice(0, i);
+    var m = codes[code]; if (!m) return;
+    var u = new URLSearchParams();
+    u.set("utm_source", m[0]); u.set("utm_medium", m[1]);
+    u.set("utm_campaign", q.get("c") || "jarlsberg_test_2611");
+    if (i >= 0) u.set("utm_content", l.slice(i + 1));
+    if (q.get("p")) u.set("p", q.get("p"));
+    history.replaceState(null, "", location.pathname + "?" + u.toString() + location.hash);
+  })();
   window.GA_ID = "G-ZM95VWPDS1";
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
