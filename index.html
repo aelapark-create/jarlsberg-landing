@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>얄스버그 · 연습용 랜딩페이지</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<!-- 구글 애널리틱스: G-XXXXXXXXXX 를 측정 ID로 바꾸면 집계 시작 -->
+<script>
+  window.GA_ID = "G-ZM95VWPDS1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  if (window.GA_ID.indexOf("XXXX") === -1) {
+    var s = document.createElement("script");
+    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + window.GA_ID;
+    document.head.appendChild(s);
+    gtag("js", new Date());
+    gtag("config", window.GA_ID);
+  }
+</script>
+<style>
+  :root { --ink:#1b2333; --sub:#6b7280; --line:#e7e2da; --bg:#f7f4ef; --card:#fff; --accent:#c8102e; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:"Pretendard",-apple-system,sans-serif; }
+  .wrap { max-width:440px; margin:0 auto; padding:0 16px 40px; }
+  .badge { display:inline-block; margin:16px 0 0; padding:4px 10px; border-radius:99px; background:#eee7dc; color:#8a5a2b; font-size:12px; font-weight:600; }
+  h1 { font-size:24px; line-height:1.35; margin:28px 0 8px; letter-spacing:-0.02em; }
+  .lead { color:var(--sub); font-size:14px; line-height:1.6; margin:0 0 20px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; }
+  .prod { display:flex; gap:14px; align-items:center; }
+  .prod img { width:110px; height:110px; object-fit:contain; flex:none; }
+  .prod h2 { font-size:16px; margin:0 0 6px; }
+  .price { font-size:17px; font-weight:700; color:#C8102E; margin:0 0 6px; }
+  .price small { font-size:12px; font-weight:500; color:#6b7280; }
+  .prod p { font-size:13px; color:var(--sub); line-height:1.55; margin:0; }
+  .buy { display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding:13px 16px;
+         border:none; border-radius:12px; background:#faf8f4; text-decoration:none; color:var(--ink); font-weight:600; font-size:15px; }
+  .buy:active { background:#f3f0ea; }
+  .buy .r { font-size:14px; }
+  .cp { height:18px; width:auto; display:block; }
+  .note { margin-top:24px; font-size:11px; color:#9ca3af; line-height:1.6; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div style="text-align:center; padding-top:16px;">
+    <img src="jarlsberg_logo.png" alt="Jarlsberg" style="width:140px; height:auto;">
+  </div>
+  <section class="card" style="margin-top:8px" id="jarlsberg_slice_120g">
+    <div class="prod">
+      <img src="jarlsberg_slices_120g.png" alt="얄스버그 슬라이스 120g 1개입">
+      <div>
+        <h2>얄스버그 슬라이스 120g × 1개입</h2>
+        <div class="price">6,800원 <small>(10g당 567원)</small></div>
+        <p>은은한 단맛과 고소한 견과류 풍미. 빵이나 계란 요리에 올리면 부드럽게 녹아요.</p>
+      </div>
+    </div>
+    <a class="buy" data-retailer="coupang" data-product="jarlsberg_slice_120g"
+       href="https://www.coupang.com/vp/products/8544712782?itemId=24740495836&vendorItemId=91749195343">
+      <img class="cp" src="coupang_logo.png" alt="쿠팡"><span class="r">바로가기 →</span>
+    </a>
+  </section>
+
+  <section class="card" id="jarlsberg_slice_2x300g" style="margin-top:12px">
+    <div class="prod">
+      <img src="jarlsberg_slices_2x300g.png" alt="얄스버그 슬라이스 300g 2개입">
+      <div>
+        <h2>얄스버그 슬라이스 300g × 2개입</h2>
+        <div class="price">25,510원 <small>(10g당 425원)</small></div>
+        <p>넉넉한 두 팩 구성. 매일 아침 토스트와 샌드위치에 부담 없이 쓰기 좋아요.</p>
+      </div>
+    </div>
+    <a class="buy" data-retailer="coupang" data-product="jarlsberg_slice_2x300g"
+       href="https://www.coupang.com/vp/products/9555693422?itemId=28513144736&vendorItemId=95461856920">
+      <img class="cp" src="coupang_logo.png" alt="쿠팡"><span class="r">바로가기 →</span>
+    </a>
+  </section>
+
+  <p style="margin-top:16px;font-size:11px;color:#9ca3af;">가격은 2026-10-29 쿠팡 기준이며 바뀔 수 있어요.</p>
+</main>
+<script>
+  // 링크의 p= 값이 있으면 해당 제품 위치로 이동
+  var q = new URLSearchParams(location.search);
+  var p = q.get("p");
+  if (p) { var el = document.getElementById(p); if (el) el.scrollIntoView(); }
+
+  // 쿠팡 버튼 클릭 → 애널리틱스에 retailer_click 이벤트 기록 후 이동
+  document.querySelectorAll(".buy").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (window.GA_ID.indexOf("XXXX") !== -1) return;
+      e.preventDefault();
+      var go = function () { location.href = a.href; };
+      gtag("event", "retailer_click", {
+        retailer: a.dataset.retailer,
+        product: a.dataset.product,
+        utm_content: q.get("utm_content") || "(none)",
+        transport_type: "beacon",
+        event_callback: go
+      });
+      setTimeout(go, 800);
+    });
+  });
+</script>
+</body>
+</html>
